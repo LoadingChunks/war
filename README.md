@@ -1,3 +1,9 @@
+Cue's Notes
+===========
+- Unlimited Lives
+- Last Team Standing
+- Free For All - use snow for spawn and randomise?
+
 ![War logo](http://i.imgur.com/LFdiF.png "War - Minecraft PVP Arenas - TDM, CTF and more!")
 
 War - Minecraft PVP Arenas (TDM, CTF and more!)
