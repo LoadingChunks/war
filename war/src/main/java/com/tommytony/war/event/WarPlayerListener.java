@@ -807,7 +807,6 @@ public class WarPlayerListener implements Listener {
 			War.war.badMsg(player, "You can't be inside a warzone without a team.");
 			return;
 		}
-		}
 	}
 	
 	@EventHandler
