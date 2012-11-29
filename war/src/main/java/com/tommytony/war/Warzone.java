@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Random;
 import java.util.logging.Level;
 
 import org.bukkit.ChatColor;
@@ -266,6 +267,7 @@ public class Warzone {
 					}
 				}
 				team.setRemainingLives(team.getTeamConfig().resolveInt(TeamConfig.LIFEPOOL));
+				team.setStillIn(true);
 				team.initializeTeamSpawn();
 				if (team.getTeamFlag() != null) {
 					team.setTeamFlag(team.getTeamFlag());
@@ -833,6 +835,20 @@ public class Warzone {
 			}
 		}
 		if (lowestNoOfPlayers != null) {
+			if(this.getWarzoneConfig().getBoolean(WarzoneConfig.RANDOMASSIGN))
+			{
+				Boolean found = false;
+				Random rand = new Random();
+				while(!found)
+				{
+					Team random = this.teams.get(rand.nextInt(this.teams.size())+1);
+					if(random.isStillIn() && random.getPlayers().size() == lowestNoOfPlayers.getPlayers().size())
+					{
+						lowestNoOfPlayers = random;
+						break;
+					}
+				}
+			}
 			lowestNoOfPlayers.addPlayer(player);
 			lowestNoOfPlayers.resetSign();
 			if (!this.hasPlayerState(player.getName())) {
@@ -872,7 +888,16 @@ public class Warzone {
 			}
 			
 			int remaining = playerTeam.getRemainingLifes();
-			if (remaining == 0) { // your death caused your team to lose
+			
+			int teamsremaining = 0;
+		
+			for (Team t : this.getTeams())
+			{
+				if(t.getRemainingLifes() > 0 || t.getRemainingLifes() == -1)
+					teamsremaining++;
+			}
+			
+			if (remaining == 0 && (!this.getWarzoneConfig().getBoolean(WarzoneConfig.LASTSTANDING) || teamsremaining <= 1)) { // your death caused your team to lose
 				if (this.isReinitializing()) {
 					// Prevent duplicate battle end. You died just after the battle ending death.
 					this.respawnPlayer(playerTeam, player);
@@ -937,6 +962,13 @@ public class Warzone {
 						
 						this.reinitialize();
 					}
+				}
+			} else if(remaining == 0 && this.getWarzoneConfig().getBoolean(WarzoneConfig.LASTSTANDING))
+			{
+				playerTeam.setStillIn(false);
+				for(Player p : playerTeam.getPlayers())
+				{
+					p.teleport(playerTeam.getTeamSpawn());
 				}
 			} else {
 				// player died without causing his team's demise

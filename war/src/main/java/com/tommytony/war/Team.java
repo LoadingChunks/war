@@ -42,6 +42,7 @@ public class Team {
 	private Volume flagVolume;
 	private final Warzone warzone;
 	private TeamKind kind;
+	private Boolean stillin;
 
 	private TeamConfigBag teamConfig;
 	private InventoryBag inventories;
@@ -55,6 +56,7 @@ public class Team {
 		this.setSpawnVolume(new Volume(name, warzone.getWorld()));
 		this.kind = kind;
 		this.setFlagVolume(null); // no flag at the start
+		this.stillin = true;
 	}
 
 	public static Team getTeamByPlayerName(String playerName) {
@@ -682,5 +684,14 @@ public class Team {
 
 	public TeamConfigBag getTeamConfig() {
 		return this.teamConfig;
+	}
+
+	public boolean isStillIn() {
+		return this.stillin;
+	}
+	
+	public void setStillIn(Boolean input)
+	{
+		this.stillin = input;
 	}
 }

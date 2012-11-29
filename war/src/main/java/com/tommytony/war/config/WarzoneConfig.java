@@ -20,7 +20,8 @@ public enum WarzoneConfig {
 	RESETONLOAD (Boolean.class),
 	RESETONUNLOAD (Boolean.class),
 	UNBREAKABLE (Boolean.class),
-	LASTSTANDING (Boolean.class);
+	LASTSTANDING (Boolean.class),
+	RANDOMASSIGN (Boolean.class);
 	
 	
 	private final Class<?> configType;

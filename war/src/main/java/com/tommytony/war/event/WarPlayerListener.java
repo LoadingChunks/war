@@ -483,13 +483,17 @@ public class WarPlayerListener implements Listener {
 					event.setTo(playerTeam.getTeamSpawn());
 					return;
 				}
-				if (playerWarzone.isRespawning(player)) {
+				if (playerWarzone.isRespawning(player) || Warzone.getZoneByPlayerName(player.getName()).getPlayerTeam(player.getName()).isStillIn()) {
 					int rt = playerTeam.getTeamConfig().resolveInt(TeamConfig.RESPAWNTIMER);
 					String isS = "s";
 					if (rt == 1) {
 						isS = "";
 					}
-					War.war.badMsg(player, "Can't leave spawn for " + rt + " second" + isS + " after spawning!");
+					
+					if(Warzone.getZoneByPlayerName(player.getName()).getPlayerTeam(player.getName()).isStillIn())
+						War.war.badMsg(player, "Your team has no lives left! Please wait for the round to end.");
+					else
+						War.war.badMsg(player, "Can't leave spawn for " + rt + " second" + isS + " after spawning!");
 					event.setTo(playerTeam.getTeamSpawn());
 					return;
 				}
