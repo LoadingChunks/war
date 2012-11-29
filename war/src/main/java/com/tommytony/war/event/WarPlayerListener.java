@@ -490,7 +490,7 @@ public class WarPlayerListener implements Listener {
 						isS = "";
 					}
 					
-					if(Warzone.getZoneByPlayerName(player.getName()).getPlayerTeam(player.getName()).isStillIn())
+					if(!Warzone.getZoneByPlayerName(player.getName()).getPlayerTeam(player.getName()).isStillIn())
 						War.war.badMsg(player, "Your team has no lives left! Please wait for the round to end.");
 					else
 						War.war.badMsg(player, "Can't leave spawn for " + rt + " second" + isS + " after spawning!");
