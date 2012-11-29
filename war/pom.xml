@@ -3,7 +3,7 @@
 
   <groupId>com.tommytony</groupId>
   <artifactId>war</artifactId>
-  <version>1.7.3-PREVIEW</version>
+  <version>1.7.3.1-PREVIEW</version>
   <packaging>jar</packaging>
 
   <name>War</name>
@@ -36,8 +36,8 @@
               <artifactId>maven-compiler-plugin</artifactId>
               <version>2.0.2</version>
               <configuration>
-                  <source>1.5</source>
-                  <target>1.5</target>
+                  <source>1.6</source>
+                  <target>1.6</target>
               </configuration>
           </plugin>
       </plugins>
@@ -55,9 +55,9 @@
   <dependencies>
     <dependency>
       <groupId>org.getspout</groupId>
-      <artifactId>spoutpluginapi</artifactId>
+      <artifactId>spoutplugin</artifactId>
       <version>dev-SNAPSHOT</version>
-      <scope>compile</scope>
+      <scope>provided</scope>
     </dependency>
     <dependency>
 	<groupId>junit</groupId>
@@ -68,7 +68,7 @@
     <dependency>
     	<groupId>org.bukkit</groupId>
     	<artifactId>bukkit</artifactId>
-    	<version>1.2.5-R4.0</version>
+    	<version>1.4.5-R0.2</version>
     	<scope>compile</scope>
     </dependency>
     <dependency>
