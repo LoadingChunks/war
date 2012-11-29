@@ -841,7 +841,7 @@ public class Warzone {
 				Random rand = new Random();
 				while(!found)
 				{
-					Team random = this.teams.get(rand.nextInt(this.teams.size())+1);
+					Team random = this.teams.get(rand.nextInt(this.teams.size())-1);
 					if(random.isStillIn() && random.getPlayers().size() == lowestNoOfPlayers.getPlayers().size())
 					{
 						lowestNoOfPlayers = random;
@@ -1499,5 +1499,17 @@ public class Warzone {
 
 	public WarzoneMaterials getWarzoneMaterials() {
 		return warzoneMaterials;
+	}
+
+	public int playingTeams() {
+		int total = 0;
+		
+		for(Team t : this.teams)
+		{
+			if(t.getPlayers().size() > 0 && t.isStillIn())
+				total++;
+		}
+		
+		return total;
 	}
 }
