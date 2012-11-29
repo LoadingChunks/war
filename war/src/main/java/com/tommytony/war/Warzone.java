@@ -880,7 +880,13 @@ public class Warzone {
 		if (playerTeam != null) {
 			// teleport to team spawn upon fast respawn death, but not for real deaths
 			if (!this.getWarzoneConfig().getBoolean(WarzoneConfig.REALDEATHS)) {
-				this.respawnPlayer(playerTeam, player);
+				if(this.getWarzoneConfig().getBoolean(WarzoneConfig.RANDOMSPAWN))
+				{
+					Random rand = new Random();
+					this.respawnPlayer(this.teams.get(rand.nextInt() - 1), player);
+				} else {
+					this.respawnPlayer(playerTeam, player);
+				}
 			} else {
 				// onPlayerRespawn takes care of real deaths
 				//player.setHealth(0);
