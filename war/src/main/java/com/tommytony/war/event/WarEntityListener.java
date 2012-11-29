@@ -12,6 +12,7 @@ import org.bukkit.block.NoteBlock;
 import org.bukkit.block.Sign;
 import org.bukkit.entity.Arrow;
 import org.bukkit.entity.Entity;
+import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 import org.bukkit.entity.Projectile;
 import org.bukkit.entity.TNTPrimed;
@@ -412,6 +413,14 @@ public class WarEntityListener implements Listener {
 		}
 
 		Entity entity = event.getEntity();
+		Warzone zone = Warzone.getZoneByLocation(entity.getLocation());
+		
+		if((entity.getType() == EntityType.ITEM_FRAME || entity.getType() == EntityType.PAINTING) && zone.getWarzoneConfig().getBoolean(WarzoneConfig.UNBREAKABLE))
+		{
+			event.setCancelled(true);
+			return;
+		}
+		
 		if (!(entity instanceof Player)) {
 			return;
 		}
@@ -426,7 +435,6 @@ public class WarEntityListener implements Listener {
 		if (event instanceof EntityDamageByEntityEvent) {
 			this.handlerAttackDefend((EntityDamageByEntityEvent) event);
 		} else  {
-			Warzone zone = Warzone.getZoneByPlayerName(player.getName());
 			Team team = Team.getTeamByPlayerName(player.getName());
 			
 			if (zone != null && team != null) {
