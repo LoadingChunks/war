@@ -482,21 +482,20 @@ public class WarPlayerListener implements Listener {
 							+" player(s) on at least " + playerWarzone.getWarzoneConfig().getInt(WarzoneConfig.MINTEAMS) + " team(s).");
 					event.setTo(playerTeam.getTeamSpawn());
 					return;
-				}
-				if (playerWarzone.isRespawning(player) || Warzone.getZoneByPlayerName(player.getName()).getPlayerTeam(player.getName()).isStillIn()) {
-					int rt = playerTeam.getTeamConfig().resolveInt(TeamConfig.RESPAWNTIMER);
-					String isS = "s";
-					if (rt == 1) {
-						isS = "";
+				} else if (playerWarzone.isRespawning(player) || Warzone.getZoneByPlayerName(player.getName()).getPlayerTeam(player.getName()).getRemainingLifes() == 0) {
+						int rt = playerTeam.getTeamConfig().resolveInt(TeamConfig.RESPAWNTIMER);
+						String isS = "s";
+						if (rt == 1) {
+							isS = "";
+						}
+						
+						if(!Warzone.getZoneByPlayerName(player.getName()).getPlayerTeam(player.getName()).isStillIn())
+							War.war.badMsg(player, "Your team has no lives left! Please wait for the round to end.");
+						else
+							War.war.badMsg(player, "Can't leave spawn for " + rt + " second" + isS + " after spawning!");
+						event.setTo(playerTeam.getTeamSpawn());
+						return;
 					}
-					
-					if(!Warzone.getZoneByPlayerName(player.getName()).getPlayerTeam(player.getName()).isStillIn())
-						War.war.badMsg(player, "Your team has no lives left! Please wait for the round to end.");
-					else
-						War.war.badMsg(player, "Can't leave spawn for " + rt + " second" + isS + " after spawning!");
-					event.setTo(playerTeam.getTeamSpawn());
-					return;
-				}
 			} else if (loadoutSelectionState != null && !loadoutSelectionState.isStillInSpawn()
 					&& !playerWarzone.isCakeThief(player.getName())
 					&& (flagReturn.equals(FlagReturn.BOTH) || flagReturn.equals(FlagReturn.SPAWN)) 
@@ -807,6 +806,7 @@ public class WarPlayerListener implements Listener {
 			event.setTo(zone.getTeleport());
 			War.war.badMsg(player, "You can't be inside a warzone without a team.");
 			return;
+		}
 		}
 	}
 	
