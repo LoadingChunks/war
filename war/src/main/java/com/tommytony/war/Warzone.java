@@ -841,7 +841,7 @@ public class Warzone {
 				Random rand = new Random();
 				while(!found)
 				{
-					Team random = this.teams.get(rand.nextInt(this.teams.size())-1);
+					Team random = this.teams.get(rand.nextInt(this.teams.size()));
 					if(random.isStillIn() && random.getPlayers().size() == lowestNoOfPlayers.getPlayers().size())
 					{
 						lowestNoOfPlayers = random;
@@ -883,7 +883,7 @@ public class Warzone {
 				if(this.getWarzoneConfig().getBoolean(WarzoneConfig.RANDOMSPAWN))
 				{
 					Random rand = new Random();
-					this.respawnPlayer(this.teams.get(rand.nextInt() - 1), player);
+					this.respawnPlayer(this.teams.get(rand.nextInt(this.teams.size())), player);
 				} else {
 					this.respawnPlayer(playerTeam, player);
 				}
@@ -899,8 +899,11 @@ public class Warzone {
 		
 			for (Team t : this.getTeams())
 			{
-				if(t.getRemainingLifes() > 0 || t.getRemainingLifes() == -1)
-					teamsremaining++;
+				if(t.getPlayers().size() > 0)
+				{
+					if(t.getRemainingLifes() > 0 || t.getRemainingLifes() == -1 || t.isStillIn())
+						teamsremaining++;
+				}
 			}
 			
 			if (remaining == 0 && (!this.getWarzoneConfig().getBoolean(WarzoneConfig.LASTSTANDING) || teamsremaining <= 1)) { // your death caused your team to lose
