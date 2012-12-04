@@ -492,7 +492,7 @@ public class WarPlayerListener implements Listener {
 						
 						Team t = Warzone.getZoneByPlayerName(player.getName()).getPlayerTeam(player.getName());
 						
-						if(!t.isStillIn())
+						if(!t.isStillIn() && Warzone.getZoneByPlayerName(player.getName()).getWarzoneConfig().getBoolean(WarzoneConfig.LASTSTANDING))
 						{
 							War.war.badMsg(player, "Your team has no lives left! Please wait for the round to end.");
 						}

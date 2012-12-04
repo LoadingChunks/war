@@ -943,9 +943,12 @@ public class Warzone {
 							}
 						}
 						
-						t.teamcast("The battle is over. Team " + playerTeam.getName() + " lost: " + player.getName() + " died and there were no lives left in their life pool.");
+						if(this.getWarzoneConfig().getBoolean(WarzoneConfig.LASTSTANDING))
+							t.teamcast("The battle is over. There is now only one team standing, the rest have fallen.");
+						else
+							t.teamcast("The battle is over. Team " + playerTeam.getName() + " lost: " + player.getName() + " died and there were no lives left in their life pool.");
 	
-						if (t.getPlayers().size() != 0 && !t.getTeamConfig().resolveBoolean(TeamConfig.FLAGPOINTSONLY)) {
+						if (t.getPlayers().size() != 0 && !t.getTeamConfig().resolveBoolean(TeamConfig.FLAGPOINTSONLY) && t.isStillIn()) {
 							if (!t.getName().equals(playerTeam.getName())) {
 								// all other teams get a point
 								t.addPoint();
