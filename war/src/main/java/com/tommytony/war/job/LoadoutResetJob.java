@@ -1,6 +1,7 @@
 package com.tommytony.war.job;
 
 import org.bukkit.entity.Player;
+import org.bukkit.potion.PotionEffectType;
 
 import com.tommytony.war.Team;
 import com.tommytony.war.Warzone;
@@ -23,7 +24,8 @@ public class LoadoutResetJob implements Runnable {
 	
 	public void run() {
 		this.zone.equipPlayerLoadoutSelection(player, team, isFirstRespawn, isToggle);
-		
+		// Change how this works, we're gonna make it a protection timer instead.
+		player.addPotionEffect(PotionEffectType.REGENERATION.createEffect((int)40L, 50));
 		// Stop fire here, since doing it in the same tick as death doesn't extinguish it
 		this.player.setFireTicks(0);
 	}

@@ -20,6 +20,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.PlayerInventory;
+import org.bukkit.potion.PotionEffectType;
 import org.getspout.spoutapi.SpoutManager;
 import org.getspout.spoutapi.player.SpoutPlayer;
 
@@ -398,6 +399,8 @@ public class Warzone {
 		
 		final LoadoutResetJob job = new LoadoutResetJob(this, team, player, isFirstRespawn, false);
 		if (team.getTeamConfig().resolveInt(TeamConfig.RESPAWNTIMER) == 0 || isFirstRespawn) {
+			// Change how this works, we're gonna make it a protection timer instead.
+			player.addPotionEffect(PotionEffectType.REGENERATION.createEffect((int)40L, 50));
 			job.run();
 		}			
 		else {

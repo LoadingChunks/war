@@ -24,6 +24,7 @@ import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.event.player.PlayerRespawnEvent;
 import org.bukkit.event.player.PlayerToggleSneakEvent;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.potion.PotionEffectType;
 import org.getspout.spoutapi.SpoutManager;
 import org.getspout.spoutapi.player.SpoutPlayer;
 
@@ -508,13 +509,13 @@ public class WarPlayerListener implements Listener {
 					&& (flagReturn.equals(FlagReturn.BOTH) || flagReturn.equals(FlagReturn.SPAWN)) 
 					&& !playerWarzone.isFlagThief(player.getName())) {
 				
-				// player is in spawn, but has left already: he should NOT be let back in - kick him out gently
+/*				// player is in spawn, but has left already: he should NOT be let back in - kick him out gently
 				// if he sticks around too long.
 				// (also, be sure you aren't preventing the flag or cake from being captured)
 				if (!CantReEnterSpawnJob.getPlayersUnderSuspicion().contains(player.getName())) {
 					CantReEnterSpawnJob job = new CantReEnterSpawnJob(player, playerTeam);
 					War.war.getServer().getScheduler().scheduleSyncDelayedTask(War.war, job, 12);
-				}
+				}*/
 				return;
 			}
 
