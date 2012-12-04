@@ -895,6 +895,11 @@ public class Warzone {
 			
 			int remaining = playerTeam.getRemainingLifes();
 			
+			// Decrement lifepool
+			playerTeam.setRemainingLives(remaining - 1);
+			
+			remaining = playerTeam.getRemainingLifes();
+			
 			int teamsremaining = 0;
 		
 			for (Team t : this.getTeams())
@@ -1059,9 +1064,6 @@ public class Warzone {
 						}
 					}
 				}
-				
-				// Decrement lifepool
-				playerTeam.setRemainingLives(remaining - 1);
 				
 				// Lifepool empty warning
 				if (remaining - 1 == 0) {
