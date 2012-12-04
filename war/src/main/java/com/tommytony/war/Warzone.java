@@ -908,7 +908,7 @@ public class Warzone {
 			{
 				if(t.getPlayers().size() > 0)
 				{
-					if(t.getRemainingLifes() == 0)
+					if(t.getRemainingLifes() == 0 && playerTeam == t)
 						t.setStillIn(false);
 					if(t.getRemainingLifes() > 0 || t.getRemainingLifes() == -1)
 						teamsremaining++;
