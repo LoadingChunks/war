@@ -901,12 +901,7 @@ public class Warzone {
 			}
 			
 			int remaining = playerTeam.getRemainingLifes();
-			
-			// Decrement lifepool
-			playerTeam.setRemainingLives(remaining - 1);
-			
-			remaining = playerTeam.getRemainingLifes();
-			
+						
 			int teamsremaining = 0;
 		
 			for (Team t : this.getTeams())
@@ -1078,6 +1073,9 @@ public class Warzone {
 						t.teamcast("Team " + playerTeam.getName() + "'s life pool is empty. One more death and they lose the battle!");
 					}
 				}
+				
+				// Decrement lifepool
+				playerTeam.setRemainingLives(remaining - 1);
 			}
 			playerTeam.resetSign();
 		}
