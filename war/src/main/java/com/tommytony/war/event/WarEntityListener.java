@@ -438,12 +438,12 @@ public class WarEntityListener implements Listener {
 			Team team = Team.getTeamByPlayerName(player.getName());
 			
 			if (zone != null && team != null) {
-				LoadoutSelection playerLoadoutState = zone.getLoadoutSelections().get(player.getName()); 
-				if (team.getSpawnVolume().contains(player.getLocation())
+				//LoadoutSelection playerLoadoutState = zone.getLoadoutSelections().get(player.getName()); 
+				/*if (team.getSpawnVolume().contains(player.getLocation())
 						&& playerLoadoutState != null && playerLoadoutState.isStillInSpawn()) {
 					// don't let a player still in spawn get damaged
 					event.setCancelled(true);
-				} else if (event.getDamage() >= player.getHealth()) {
+				} else*/ if (event.getDamage() >= player.getHealth()) {
 					if (zone.getReallyDeadFighters().contains(player.getName())) {
 						// don't re-count the death points of an already dead person, make sure they are dead though
 						// (reason for this is that onEntityDamage sometimes fires more than once for one death)
