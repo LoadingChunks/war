@@ -354,6 +354,11 @@ public class Warzone {
 		// Teleport the player back to spawn
 		player.teleport(team.getTeamSpawn());
 	}
+	
+	public void respawnPlayer(Team team, Player player, Location loc) {
+		this.handleRespawn(team, player);
+		player.teleport(loc);
+	}
 
 	public void respawnPlayer(PlayerMoveEvent event, Team team, Player player) {
 		this.handleRespawn(team, player);
@@ -890,7 +895,7 @@ public class Warzone {
 				if(this.getWarzoneConfig().getBoolean(WarzoneConfig.RANDOMSPAWN))
 				{
 					Random rand = new Random();
-					this.respawnPlayer(this.teams.get(rand.nextInt(this.teams.size())), player);
+					this.respawnPlayer(playerTeam, player, this.teams.get(rand.nextInt(this.teams.size())).getTeamSpawn());
 				} else {
 					this.respawnPlayer(playerTeam, player);
 				}
