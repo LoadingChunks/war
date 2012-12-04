@@ -402,9 +402,9 @@ public class Warzone {
 			// Change how this works, we're gonna make it a protection timer instead.
 			player.addPotionEffect(PotionEffectType.REGENERATION.
 					createEffect((int)(team.getTeamConfig().
-							getInt(TeamConfig.SPAWNPROTECTIONTIME) * 20L),
+							resolveInt(TeamConfig.SPAWNPROTECTIONTIME) * 20L),
 					(team.getTeamConfig().
-							getInt(TeamConfig.SPAWNPROTECTIONPOTENCY))));			
+							resolveInt(TeamConfig.SPAWNPROTECTIONPOTENCY))));			
 			job.run();
 		}			
 		else {
