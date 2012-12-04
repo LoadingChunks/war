@@ -187,7 +187,7 @@ public class War extends JavaPlugin {
 		teamDefaultConfig.put(TeamConfig.SATURATION, 10);
 		teamDefaultConfig.put(TeamConfig.SPAWNSTYLE, TeamSpawnStyle.SMALL);
 		teamDefaultConfig.put(TeamConfig.TEAMSIZE, 10);
-		teamDefaultConfig.put(TeamConfig.SPAWNPROCTECTIONTIME, 5);
+		teamDefaultConfig.put(TeamConfig.SPAWNPROTECTIONTIME, 5);
 		teamDefaultConfig.put(TeamConfig.SPAWNPROTECTIONPOTENCY, 50);
 		
 		this.getDefaultInventories().getLoadouts().clear();

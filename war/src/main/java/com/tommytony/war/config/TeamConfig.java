@@ -13,7 +13,7 @@ public enum TeamConfig {
 	SATURATION (Integer.class),
 	SPAWNSTYLE (TeamSpawnStyle.class),
 	TEAMSIZE (Integer.class),
-	SPAWNPROCTECTIONTIME (Integer.class),
+	SPAWNPROTECTIONTIME (Integer.class),
 	SPAWNPROTECTIONPOTENCY (Integer.class);
 	
 	private final Class<?> configType;
