@@ -216,9 +216,9 @@ public class WarPlayerListener implements Listener {
 				}
 			} 
 
-			Warzone zone = Warzone.getZoneByPlayerName(player.getName());
+			/*Warzone zone = Warzone.getZoneByPlayerName(player.getName());
 			if (zone != null && zone.getLoadoutSelections().containsKey(player.getName()) 
-					&& zone.getLoadoutSelections().get(player.getName()).isStillInSpawn()) {
+					&&) {
 				event.setUseItemInHand(Result.DENY);
 				ItemStack inHand = event.getItem();
 				
@@ -230,7 +230,7 @@ public class WarPlayerListener implements Listener {
 					
 					War.war.badMsg(player, "Can't use items while still in spawn.");
 				}
-			}
+			}*/
 		}
 	}
 
