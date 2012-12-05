@@ -29,6 +29,7 @@ import org.bukkit.event.entity.EntityRegainHealthEvent;
 import org.bukkit.event.entity.EntityRegainHealthEvent.RegainReason;
 import org.bukkit.event.entity.ExplosionPrimeEvent;
 import org.bukkit.event.entity.FoodLevelChangeEvent;
+import org.bukkit.event.hanging.HangingBreakEvent;
 import org.bukkit.inventory.InventoryHolder;
 import org.bukkit.inventory.ItemStack;
 import org.getspout.spoutapi.SpoutManager;
@@ -283,6 +284,19 @@ public class WarEntityListener implements Listener {
 					return;
 				}
 			}
+		}
+	}
+	
+	/**
+	 * Protects hanging items when doing a game with unbreakables
+	 */
+	
+	@EventHandler
+	public void onHangingBreak(HangingBreakEvent event)
+	{
+		if(Warzone.getZoneByLocation(event.getEntity().getLocation()).getWarzoneConfig().getBoolean(WarzoneConfig.UNBREAKABLE))
+		{
+			event.setCancelled(true);
 		}
 	}
 
