@@ -405,11 +405,15 @@ public class Warzone {
 		final LoadoutResetJob job = new LoadoutResetJob(this, team, player, isFirstRespawn, false);
 		if (team.getTeamConfig().resolveInt(TeamConfig.RESPAWNTIMER) == 0 || isFirstRespawn) {
 			// Change how this works, we're gonna make it a protection timer instead.
-			player.addPotionEffect(PotionEffectType.REGENERATION.
-					createEffect((int)(team.getTeamConfig().
-							resolveInt(TeamConfig.SPAWNPROTECTIONTIME) * 20L * 5L),
-					(team.getTeamConfig().
-							resolveInt(TeamConfig.SPAWNPROTECTIONPOTENCY))));			
+			
+			if(team.getTeamConfig().contains(TeamConfig.SPAWNPROTECTIONPOTENCY) && team.getTeamConfig().contains(TeamConfig.SPAWNPROTECTIONTIME))
+			{
+				player.addPotionEffect(PotionEffectType.REGENERATION.
+						createEffect((int)(team.getTeamConfig().
+								resolveInt(TeamConfig.SPAWNPROTECTIONTIME) * 20L * 5L),
+								(team.getTeamConfig().
+										resolveInt(TeamConfig.SPAWNPROTECTIONPOTENCY))));
+			}
 			job.run();
 		}			
 		else {
