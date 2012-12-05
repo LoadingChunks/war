@@ -83,19 +83,19 @@ public class WarEntityListener implements Listener {
 			if ((attackerTeam != null && defenderTeam != null && attackerTeam != defenderTeam && attackerWarzone == defenderWarzone)
 					|| (attackerTeam != null && defenderTeam != null && attacker.getEntityId() == defender.getEntityId())) {
 				
-				LoadoutSelection defenderLoadoutState = defenderWarzone.getLoadoutSelections().get(d.getName());
+/*				LoadoutSelection defenderLoadoutState = defenderWarzone.getLoadoutSelections().get(d.getName());
 				if (defenderLoadoutState != null && defenderLoadoutState.isStillInSpawn()) {
 					War.war.badMsg(a, "The target is still in spawn!");
 					event.setCancelled(true);
 					return;
-				}
+				}*/
 				
-				LoadoutSelection attackerLoadoutState = attackerWarzone.getLoadoutSelections().get(a.getName());
+				/*LoadoutSelection attackerLoadoutState = attackerWarzone.getLoadoutSelections().get(a.getName());
 				if (attackerLoadoutState != null && attackerLoadoutState.isStillInSpawn()) {
 					War.war.badMsg(a, "You can't attack while still in spawn!");
 					event.setCancelled(true);
 					return;
-				}
+				}*/
 				
 				// Make sure none of them are locked in by respawn timer
 				if (defenderWarzone.isRespawning(d)) {
@@ -414,12 +414,6 @@ public class WarEntityListener implements Listener {
 
 		Entity entity = event.getEntity();
 		Warzone zone = Warzone.getZoneByLocation(entity.getLocation());
-		
-		if((entity.getType() == EntityType.ITEM_FRAME || entity.getType() == EntityType.PAINTING) && zone.getWarzoneConfig().getBoolean(WarzoneConfig.UNBREAKABLE))
-		{
-			event.setCancelled(true);
-			return;
-		}
 		
 		if (!(entity instanceof Player)) {
 			return;
