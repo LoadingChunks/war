@@ -292,6 +292,11 @@ public class WarEntityListener implements Listener {
 	@EventHandler
 	public void onHangingBreak(HangingBreakEvent event)
 	{
+		if(event.getEntity() == null)
+			return;
+		if(Warzone.getZoneByLocation(event.getEntity().getLocation()) == null)
+			return;
+
 		if(Warzone.getZoneByLocation(event.getEntity().getLocation()).getWarzoneConfig().getBoolean(WarzoneConfig.UNBREAKABLE))
 		{
 			event.setCancelled(true);
